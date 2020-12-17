@@ -1,0 +1,90 @@
+POST -> https://topsecretapi.herokuapp.com/topsecret/
+
+REQUEST:
+
+{
+  "satellites": [
+    { 
+      "name": "Kenobi",
+      "distance": 100,
+      "message": [
+        "este",
+        "",
+        "",
+        "mensaje",
+        ""
+      ]
+    },
+    {
+      "name": "Skywalker",
+      "distance": 115.5,
+      "message": [
+        "",
+        "es",
+        "",
+        "",
+        "secreto"
+      ]
+    },
+    {
+      "name": "Sato",
+      "distance": 142.7,
+      "message": [
+        "este",
+        "",
+        "un",
+        "",
+        ""
+      ]
+    }
+  ]
+}
+
+POST → https://topsecretapi.herokuapp.com/topsecret_split/Kenobi
+
+REQUEST:
+
+{
+  "distance": 100,
+  "message": [
+    "este",
+    "",
+    "",
+    "mensaje",
+    ""
+  ]
+}
+
+POST → https://topsecretapi.herokuapp.com/topsecret_split/Skywalker
+
+REQUEST:
+
+{
+  "distance": 115.5,
+  "message": [
+    "",
+    "es",
+    "",
+    "",
+    "secreto"
+  ]
+}
+
+POST → https://topsecretapi.herokuapp.com/topsecret_split/Sato
+
+REQUEST:
+
+{
+  "name": "Sato",
+  "distance": 142.7,
+  "message": [
+    "este",
+    "",
+    "un",
+    "",
+    ""
+  ]
+}
+
+
+GET -> https://topsecretapi.herokuapp.com/topsecret_split
