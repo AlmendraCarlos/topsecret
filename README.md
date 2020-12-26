@@ -25,13 +25,4 @@ gradlew bootRun -> para ejecutar
 
 Se uso el IDE Intellij para realizar el desarrollo.
 
-Cuando el proyecto se encuentra corriendo dirigirse a
-
-http://localhost:8080/h2-console/
-
-con los datos:
-
-JDBC URL: jdbc:h2:mem:test
-User Name: sa
-
-y realizar los inserts que se encuentran en resources/schema.sql en la tabla SATELLITES
+Se encuentra en tomcat embebido escuchando el 8080
