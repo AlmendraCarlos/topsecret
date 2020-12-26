@@ -1,10 +1,12 @@
 package com.meli.topSecret.service;
 
+import com.meli.topSecret.domain.Messages;
 import com.meli.topSecret.domain.Satellites;
 import com.meli.topSecret.dto.responseUltraSecretDTO.positionDTO;
 import com.meli.topSecret.dto.responseUltraSecretDTO.responseTopUltraSecretDTO;
 import com.meli.topSecret.dto.satellitesDTO;
 import com.meli.topSecret.dto.secretDTO;
+import com.meli.topSecret.repository.MessagesRepository;
 import com.meli.topSecret.repository.SatellitesRepository;
 import com.meli.topSecret.trilaterationEngine.Point;
 import com.meli.topSecret.trilaterationEngine.Trilateration;
@@ -20,6 +22,7 @@ import java.util.stream.Collectors;
 public class secretService {
 
     private final SatellitesRepository satellitesRepository;
+    private final MessagesRepository messagesRepository;
 
     private double[] getLocation(){
 
@@ -40,9 +43,9 @@ public class secretService {
 
         List<Satellites> satellites = satellitesRepository.findAll();
 
-        List<String> msg1 = satellites.get(0).getMessage();
-        List<String> msg2 = satellites.get(1).getMessage();
-        List<String> msg3 = satellites.get(2).getMessage();
+        List<String> msg1 = satellites.get(0).getMessage().getMessage();
+        List<String> msg2 = satellites.get(1).getMessage().getMessage();
+        List<String> msg3 = satellites.get(2).getMessage().getMessage();
 
         for(int i = 0; i< msg1.size(); i++ ){
             if(!msg2.get(i).equals("")){
@@ -90,7 +93,10 @@ public class secretService {
         for(satellitesDTO s : data.getSatellites()) {
             Satellites satellites1 = satellitesRepository.findByName(s.getName());
             satellites1.setDistance(s.getDistance());
-            satellites1.setMessage(s.getMessage());
+            Messages messages = new Messages();
+            messages.setMessage(s.getMessage());
+            messagesRepository.save(messages);
+            satellites1.setMessage(messages);
             satellitesRepository.save(satellites1);
         }
     }

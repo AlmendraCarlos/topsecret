@@ -3,24 +3,17 @@ package com.meli.topSecret.domain;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
-public class Satellites {
+public class Messages {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-
-    private double pos_x;
-
-    private double pos_y;
-
-    private double distance;
-
-    @ManyToOne
-    private Messages message;
+    @ElementCollection
+    private List<String> message;
 
 }
